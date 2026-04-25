@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ameya Marathe — Power BI Engineer & BI Developer</title>
+<meta name="description" content="Ameya Marathe — Power BI Engineer based in London. Specialising in DAX, semantic modelling, Microsoft Fabric, and dashboards that get used." />
+<meta property="og:title" content="Ameya Marathe — Power BI Engineer" />
+<meta property="og:description" content="Power BI Engineer based in London. Microsoft Fabric, DAX, semantic modelling, and reporting that drives decisions." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#131826" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #131826;
+    --bg-deep: #0e1320;
+    --bg-card: #1a2030;
+    --bg-card-hover: #1e2438;
+    --rule: #2a3148;
+    --rule-soft: #232a40;
+
+    --ink: #ede6d6;
+    --ink-soft: #b8afa0;
+    --ink-quiet: #8a8275;
+    --ink-faint: #6e6657;
+
+    --accent: #e89478;
+    --accent-deep: #d77a5c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; background: var(--bg); }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(19, 24, 38, 0.78);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .nav-mark {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.005em;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .nav-mark::after {
+    content: '.';
+    color: var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: right 0.3s ease;
+  }
+  .nav-links a:hover::after { right: 0; }
+
+  @media (max-width: 820px) {
+    .nav-links { gap: 14px; font-size: 11px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 120px 0 100px;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--ink-soft);
+  }
+  h1.hero-name {
+    font-family: 'EB Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(60px, 9.5vw, 132px);
+    line-height: 0.94;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 30px;
+  }
+  h1.hero-name em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .hero-tagline {
+    font-family: 'EB Garamond', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 480px;
+    font-style: italic;
+  }
+  .hero-side {
+    padding-bottom: 12px;
+  }
+  .hero-side p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    max-width: 360px;
+  }
+  .hero-meta {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-quiet);
+  }
+  .hero-meta strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    margin-top: 4px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 0 70px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section { padding: 80px 0; position: relative; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 56px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .section-title {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(34px, 4.4vw, 50px);
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+  }
+  .about-grid p {
+    font-family: 'EB Garamond', serif;
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .about-grid p:first-child::first-letter {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 64px;
+    float: left;
+    line-height: 0.9;
+    margin: 8px 12px 0 0;
+    color: var(--accent);
+  }
+  .about-aside {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-quiet);
+    line-height: 1.9;
+  }
+  .about-aside .label {
+    color: var(--ink);
+    font-weight: 500;
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    font-size: 11px;
+  }
+  .about-aside .label:first-child { margin-top: 0; }
+
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .skill-block {
+    background: var(--bg);
+    padding: 32px 28px;
+    transition: background 0.3s ease;
+  }
+  .skill-block:hover { background: var(--bg-card); }
+  .skill-block h3 {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .skill-block ul {
+    list-style: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.95;
+    color: var(--ink-soft);
+  }
+  .skill-block li::before {
+    content: '— ';
+    color: var(--accent);
+    margin-right: 4px;
+  }
+  @media (max-width: 768px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .role {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    transition: padding 0.3s ease;
+  }
+  .role:hover { padding-left: 12px; }
+  .role:last-child { border-bottom: 1px solid var(--rule); }
+  .role-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-quiet);
+    padding-top: 8px;
+  }
+  .role-title {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .role-company {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--accent);
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .role-bullets {
+    list-style: none;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.65;
+    max-width: 640px;
+  }
+  .role-bullets li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+  }
+  .role-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 12px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .role-bullets li:last-child { margin-bottom: 0; }
+
+  @media (max-width: 768px) {
+    .role { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .project {
+    padding: 32px 30px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, background 0.3s ease;
+  }
+  .project:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+  }
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-quiet);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .project-meta .num { color: var(--accent); }
+  .project h3 {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .project-bullets {
+    list-style: none;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+  .project-bullets li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+  }
+  .project-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- EDUCATION ---------- */
+  .education-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .edu-item {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 40px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .edu-item:last-child { border-bottom: 1px solid var(--rule); }
+  .edu-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-quiet);
+  }
+  .edu-degree {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .edu-school {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .edu-detail {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .edu-location {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-quiet);
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .edu-item { grid-template-columns: 1fr; gap: 8px; }
+    .edu-location { text-align: left; }
+  }
+
+  /* ---------- CERTS ---------- */
+  .certs {
+    margin-top: 56px;
+    padding: 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 32px;
+  }
+  .certs-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .certs ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .certs li {
+    position: relative;
+  }
+  .certs li + li::before {
+    content: '·';
+    position: absolute;
+    left: -16px;
+    color: var(--ink-quiet);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section {
+    padding: 120px 0;
+    text-align: center;
+  }
+  .contact-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .contact-headline {
+    font-family: 'EB Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(44px, 6.5vw, 84px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+    color: var(--ink);
+  }
+  .contact-headline em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .contact-email {
+    display: inline-block;
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    word-break: break-word;
+  }
+  .contact-email:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 36px;
+    padding: 14px 28px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .cv-button:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-2px);
+  }
+  .cv-button .arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+  .cv-button:hover .arrow { transform: translate(3px, 3px); }
+  .contact-socials {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .contact-socials a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-socials a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+  }
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label, h1.hero-name, .hero-tagline, .hero-side, .hero-meta {
+    animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+  .hero-label { animation-delay: 0.05s; }
+  h1.hero-name { animation-delay: 0.15s; }
+  .hero-tagline { animation-delay: 0.3s; }
+  .hero-side { animation-delay: 0.45s; }
+  .hero-meta { animation-delay: 0.6s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-mark">Ameya Marathe</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Stack</a>
+      <a href="#experience">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-label">Portfolio · 2026</div>
+        <h1 class="hero-name">Ameya<br/>Marathe<em>.</em></h1>
+        <p class="hero-tagline">Power BI Engineer turning complex, multi-source data into reporting that executives actually open.</p>
+      </div>
+      <div class="hero-side">
+        <p>Three-plus years building DAX-heavy semantic models, governed dashboards, and Microsoft Fabric pipelines that replace spreadsheets with trusted, self-service analytics. PL-300 and DP-600 certified.</p>
+        <div class="hero-meta">
+          <div>Based in<strong>London, UK</strong></div>
+          <div>Available for<strong>BI roles</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">01 / About</span>
+      <h2 class="section-title">A short <em>introduction</em></h2>
+    </div>
+    <div class="about-grid">
+      <aside class="about-aside">
+        <span class="label">Role</span>
+        Power BI Engineer
+        <span class="label">Focus</span>
+        Semantic modelling · DAX · Fabric
+        <span class="label">Experience</span>
+        3+ years
+        <span class="label">Open to</span>
+        London · Hybrid · Remote
+      </aside>
+      <div>
+        <p>I'm a Power BI Engineer based in London, currently with Westminster City Council, where I build the reporting that lands in front of operational teams and executive boards. My day-to-day sits at the intersection of DAX, semantic modelling, Power Query, and SQL — designing reusable datasets, KPI frameworks, and governance-compliant dashboards across complex multi-source environments.</p>
+        <p>I get the most satisfaction from work that bridges two worlds: making the engineering rigorous (clean models, documented grain, error-alerted pipelines) while keeping the surface friendly enough for non-technical colleagues to pick up and run with. Reducing ad-hoc data requests, training people out of dependence on me, and writing documentation that actually gets read — that's the job done well.</p>
+        <p>Outside of work I'm part-time on an MSc in Data Science at the University of Queensland, leaning further into machine learning, statistical inference, and where analytics is heading next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">02 / Stack</span>
+      <h2 class="section-title">Tools I <em>actually</em> use</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h3>BI & Visualisation</h3>
+        <ul>
+          <li>Power BI</li>
+          <li>DAX</li>
+          <li>Power Query</li>
+          <li>Tableau</li>
+          <li>Excel</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h3>Data Platform</h3>
+        <ul>
+          <li>Microsoft Fabric</li>
+          <li>Databricks</li>
+          <li>Delta Live Tables</li>
+          <li>dbt</li>
+          <li>API integrations</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h3>Languages & Adjacent</h3>
+        <ul>
+          <li>SQL (T-SQL, SQL Server)</li>
+          <li>Python · PySpark</li>
+          <li>Power Apps · Power Automate</li>
+          <li>D365 / Dataverse</li>
+          <li>Azure-native tooling</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">03 / Work</span>
+      <h2 class="section-title">Selected <em>experience</em></h2>
+    </div>
+    <div class="timeline">
+
+      <div class="role">
+        <div class="role-time">Sept 2023 — Present</div>
+        <div>
+          <div class="role-title">Business Intelligence Analyst</div>
+          <div class="role-company">Westminster City Council · London</div>
+          <ul class="role-bullets">
+            <li>Partner with operational and executive stakeholders to translate complex data into clear, user-friendly Power BI dashboards — adopted into weekly governance reviews and presented directly to executive boards.</li>
+            <li>Automated and streamlined manual reporting by building Microsoft Fabric pipelines with incremental refresh and error alerting, cutting data inconsistency detection from days to hours.</li>
+            <li>Led the migration of 80% of legacy SAP BO reports to SQL Server and Power BI — writing complex T-SQL, optimising stored procedures, and improving query performance by ~50% with thorough documentation throughout.</li>
+            <li>Architected CRM-to-Fabric ETL pipelines and self-service reporting end-to-end, reducing ad-hoc data requests by 30% and empowering colleagues to explore data independently.</li>
+            <li>Delivered training and ongoing support to non-technical colleagues on Power BI and Power Apps, lifting data literacy across teams.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-time">Jan 2023 — Aug 2023</div>
+        <div>
+          <div class="role-title">BI Developer · Contract</div>
+          <div class="role-company">ArkVeda · Remote</div>
+          <ul class="role-bullets">
+            <li>Designed a data modelling service that automated lineage across 10+ schemas, surfacing relational links and reducing time spent tracing lineage from hours to minutes.</li>
+            <li>Migrated legacy batch pipelines to Delta Live Tables on Databricks, improving reliability and reducing ad-hoc failure remediation.</li>
+            <li>Extended a Kimball-architecture semantic layer using dbt — adding new dimensions and supporting schema evolution without disrupting downstream reporting.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-time">June 2022 — Nov 2022</div>
+        <div>
+          <div class="role-title">Analyst · Contract</div>
+          <div class="role-company">Earlham Institute · Norwich</div>
+          <ul class="role-bullets">
+            <li>Built a KPI-driven lead database and reporting suite to support targeted marketing campaigns, improving conversion efficiency and accelerating outreach cycles.</li>
+            <li>Conducted analysis that identified three untapped market segments — translated into a clear story for management that contributed to a 50% uplift in customer renewals.</li>
+            <li>Produced segmentation dashboards enabling management to visualise performance trends and make data-backed strategic decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">04 / Projects</span>
+      <h2 class="section-title">Things I've <em>shipped</em></h2>
+    </div>
+    <div class="projects-grid">
+
+      <article class="project">
+        <div class="project-meta">
+          <span class="num">Project / 01</span>
+          <span>Jan 2025</span>
+        </div>
+        <h3>Medallion Lakehouse to Direct Lake Semantic Model</h3>
+        <ul class="project-bullets">
+          <li>Built a Microsoft Fabric Lakehouse sourcing live CRM Dataverse data, transforming raw records into clean, trusted, analytics-ready datasets for cross-team reporting.</li>
+          <li>Designed intuitive star-schema data marts with documented grain definitions and conformed dimensions — making the data easy to understand for non-technical consumers.</li>
+          <li>Implemented data-quality checks and incremental ingestion to ensure outputs remained reliable, consistent, and fully documented at scale.</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">Microsoft Fabric</span>
+          <span class="tag">Dataverse</span>
+          <span class="tag">Direct Lake</span>
+          <span class="tag">Star Schema</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-meta">
+          <span class="num">Project / 02</span>
+          <span>Oct 2025</span>
+        </div>
+        <h3>FRED Lakehouse Analytics</h3>
+        <ul class="project-bullets">
+          <li>Built an end-to-end analytics platform ingesting macro and financial time-series via the FRED API, processing 500K+ records with hands-on API integration at scale.</li>
+          <li>Implemented data-quality monitoring with logged validation results on every pipeline run, ensuring trustworthy outputs for downstream users.</li>
+          <li>Delivered a well-documented Power BI semantic model with standardised DAX measures, enabling consistent self-service analytics and reducing one-off data requests.</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">FRED API</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Data Quality</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">05 / Education</span>
+      <h2 class="section-title">Where I <em>studied</em></h2>
+    </div>
+    <div class="education-grid">
+
+      <div class="edu-item">
+        <div class="edu-time">Expected May 2027</div>
+        <div>
+          <div class="edu-degree">MSc Data Science (part-time)</div>
+          <div class="edu-school">University of Queensland</div>
+          <div class="edu-detail">Machine Learning · Statistical Inference · NLP · Analytics Applications</div>
+        </div>
+        <div class="edu-location">St Lucia, AU</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-time">Jan 2023</div>
+        <div>
+          <div class="edu-degree">MSc Management</div>
+          <div class="edu-school">Cranfield University, School of Management</div>
+          <div class="edu-detail">Evidence-Based Management · Business Performance · Project Management</div>
+        </div>
+        <div class="edu-location">Cranfield, UK</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-time">Year</div>
+        <div>
+          <div class="edu-degree">Bachelor of Laws (LLB)</div>
+          <div class="edu-school">Symbiosis Law School</div>
+          <div class="edu-detail">Constitutional Law · Contract Law · Jurisprudence</div>
+        </div>
+        <div class="edu-location">Pune, IN</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-time">May 2016</div>
+        <div>
+          <div class="edu-degree">BSc Computer Science</div>
+          <div class="edu-school">University of Pune</div>
+          <div class="edu-detail">Data Structures · Statistics · Object-Oriented Programming</div>
+        </div>
+        <div class="edu-location">Pune, IN</div>
+      </div>
+
+    </div>
+
+    <div class="certs">
+      <span class="certs-label">Certifications —</span>
+      <ul>
+        <li>PL-300 · Power BI Data Analyst</li>
+        <li>DP-600 · Fabric Analytics Engineer</li>
+        <li>Six Sigma · Green Belt</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="contact-eyebrow">— Get in touch —</div>
+    <h2 class="contact-headline">Got a data <em>problem</em>?<br/>Let's talk.</h2>
+    <a class="contact-email" href="mailto:ameya_marathe@outlook.com">ameya_marathe@outlook.com</a>
+    <div>
+      <a class="cv-button" href="cv.pdf" target="_blank" rel="noopener">
+        <span>Download CV</span>
+        <span class="arrow">↓</span>
+      </a>
+    </div>
+    <div class="contact-socials">
+      <a href="tel:+447479235017">+44 7479 235017</a>
+      <a href="https://www.linkedin.com/in/ameyamarathe" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ameyamarathe" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 Ameya Marathe · London, UK</div>
+    <div>Built simply · Hosted on GitHub Pages</div>
+  </div>
+</footer>
+
+</body>
+</html>
